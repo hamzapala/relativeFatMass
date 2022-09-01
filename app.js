@@ -118,12 +118,18 @@ function calculateFunc() {
 }
 
 function sexChange() {
-  if(result.innerText!==""){
-    if(sex.value == "male") {
-    result.innerText = `${calculateFunc().toFixed(2)} %`;
-  }else {
-    result.innerText = `${(parseFloat(calculateFunc().toFixed(2)) + 12).toFixed(2)} %`;
-  }}
+  if (
+    result.innerText !== "" ||
+    result.innerText !== "please enter a value upper than zero or valid number"
+  ) {
+    if (sex.value == "male") {
+      result.innerText = `${calculateFunc().toFixed(2)} %`;
+    } else {
+      result.innerText = `${(
+        parseFloat(calculateFunc().toFixed(2)) + 12
+      ).toFixed(2)} %`;
+    }
+  }
 }
 
 function controlFuncMaleForHeight() {
