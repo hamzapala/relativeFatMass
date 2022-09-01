@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>relative-fat-mass</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>RFM Calculator (Relative Fat Mass)</h1>
+    <p>Sex:</p>
+    <select name="" id="sex" class="sex">
+      <option value="male" class="male">Male</option>
+      <option value="female" class="female">Female</option>
+    </select>
+    <p>Height:</p>
+    <select name="" id="heightSelect" class="heightSelect">
+      <option value="cm" class="heightCm">cantimetes(cm)</option>
+      <option value="m" class="heightM">meters(m)</option>
+      <option value="in" class="heightIn">inches(in)</option>
+      <option value="ft" class="heightFt">feet(ft)</option>
+    </select>
+    <input type="number" class="height" id="height" value="" />
+    <p>Waist:</p>
+    <select name="" id="waistSelect" class="waistSelect">
+      <option value="cm" class="waistCm">cantimetes(cm)</option>
+      <option value="in" class="waistIn">inches(in)</option>
+    </select>
+    <input type="number" class="waist" id="waist" value="" />
+
+    <br /><br />
+    <h4>Relative Fat Mass:</h4>
+    <p class="result" id="result"></p>
+    <table id="table">
+      <tr>
+        <td class="background">Extremely low level of fat&lt;2%</td>
+      </tr>
+      <tr>
+        <td>Essential fat: 2-5%</td>
+      </tr>
+      <tr>
+        <td>Athletes: 14-17%</td>
+      </tr>
+      <tr>
+        <td>Fitness: 6-13%</td>
+      </tr>
+      <tr>
+        <td>Obese: 25%+</td>
+      </tr>
+    </table>
+  </body>
+  <script src="./app.js"></script>
+</html>
