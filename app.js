@@ -273,6 +273,7 @@ heightSelect.onchange = function () {
 };
 sex.onchange = function () {
   sexChange();
+  resultFunc();
 };
 
 height.addEventListener("keyup", function () {
