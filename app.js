@@ -7,6 +7,12 @@ const sex = document.getElementById("sex");
 const waistSelect = document.getElementById("waistSelect");
 const heightSelect = document.getElementById("heightSelect");
 const table = document.getElementById("table");
+const child1 = document.getElementById("child1");
+const child2 = document.getElementById("child2");
+const child3 = document.getElementById("child3");
+const child4 = document.getElementById("child4");
+const child5 = document.getElementById("child5");
+const child6 = document.getElementById("child6");
 
 let preValHeight = "cm";
 let preValWaist = "cm";
@@ -192,11 +198,68 @@ function resultFunc(){
   ) {
     table.classList = "hide";
   }
-  if (
-    parseFloat(result.innerText) < 2
+  if (parseFloat(result.innerText) < 2) {
+    table.classList = "show";
+    child1.classList.add("background");
+    child2.classList.remove("background");
+    child3.classList.remove("background");
+    child4.classList.remove("background");
+    child5.classList.remove("background");
+    child6.classList.remove("background");
+  } else if (
+    parseFloat(result.innerText) >= 2 &&
+    parseFloat(result.innerText) < 6
   ) {
     table.classList = "show";
-    table.children[2].classList.add("background");
+    child1.classList.remove("background");
+    child2.classList.add("background");
+    child3.classList.remove("background");
+    child4.classList.remove("background");
+    child5.classList.remove("background");
+    child6.classList.remove("background");
+  } else if (
+    parseFloat(result.innerText) >= 6 &&
+    parseFloat(result.innerText) < 14
+  ) {
+    table.classList = "show";
+    child1.classList.remove("background");
+    child2.classList.remove("background");
+    child3.classList.add("background");
+    child4.classList.remove("background");
+    child5.classList.remove("background");
+    child6.classList.remove("background");
+  } else if (
+    parseFloat(result.innerText) >= 14 &&
+    parseFloat(result.innerText) < 18
+  ) {
+    table.classList = "show";
+    child1.classList.remove("background");
+    child2.classList.remove("background");
+    child3.classList.remove("background");
+    child4.classList.add("background");
+    child5.classList.remove("background");
+    child6.classList.remove("background");
+  } else if (
+    parseFloat(result.innerText) >= 18 &&
+    parseFloat(result.innerText) < 25
+  ) {
+    table.classList = "show";
+    child1.classList.remove("background");
+    child2.classList.remove("background");
+    child3.classList.remove("background");
+    child4.classList.remove("background");
+    child5.classList.add("background");
+    child6.classList.remove("background");
+  } else if (
+    parseFloat(result.innerText) >= 25 
+  ) {
+    table.classList = "show";
+    child1.classList.remove("background");
+    child2.classList.remove("background");
+    child3.classList.remove("background");
+    child4.classList.remove("background");
+    child5.classList.remove("background");
+    child6.classList.add("background");
   }
 }
 
