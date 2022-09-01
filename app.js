@@ -119,7 +119,7 @@ function calculateFunc() {
 
 function sexChange() {
   if (
-    result.innerText !== "" ||
+    result.innerText !== "" &&
     result.innerText !== "please enter a value upper than zero or valid number"
   ) {
     if (sex.value == "male") {
