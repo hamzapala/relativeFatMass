@@ -1,9 +1,12 @@
 const waist = document.getElementById("waist");
 const height = document.getElementById("height");
 const result = document.getElementById("result");
+const hResult = document.getElementById("hResult");
+const wResult = document.getElementById("wResult");
 const sex = document.getElementById("sex");
 const waistSelect = document.getElementById("waistSelect");
 const heightSelect = document.getElementById("heightSelect");
+const table = document.getElementById("table");
 
 let preValHeight = "cm";
 let preValWaist = "cm";
@@ -64,20 +67,6 @@ function waistSelectFunc() {
 }
 }
 
-
-
-
-
-
-function sexChange() {
-  if(sex.value == "male") {
-    return calculateFunc();
-  } else{
-    return calculateFunc() + 12;
-  }
-}
-
-
 function calculateFunc() {
   if (waistSelect.value == "cm") {
     if (heightSelect.value == "cm") {
@@ -122,12 +111,105 @@ function calculateFunc() {
   }
 }
 
+function sexChange() {
+  if(sex.value == "male") {
+    result.innerText = `${calculateFunc().toFixed(2)} %`;
+  }else {
+    result.innerText = `${(parseFloat(calculateFunc().toFixed(2)) + 12).toFixed(2)} %`;
+  }
+}
+
+function controlFuncMaleForHeight() {
+  if (
+        waist.value == 0 ||
+        waist.value == "" ||
+        waist.value.startsWith("-") ||
+        height.value == 0 ||
+        height.value == "" ||
+        height.value.startsWith("-")
+      ) {
+        hResult.innerText = "";
+        result.innerText =
+          "please enter a value upper than zero or valid number";
+      } else{
+       hResult.innerText = "";
+       result.innerText = `${calculateFunc().toFixed(2)} %`;}
+     }
+function controlFuncMaleForWaist() {
+  if (
+        waist.value == 0 ||
+        waist.value == "" ||
+        waist.value.startsWith("-") ||
+        height.value == 0 ||
+        height.value == "" ||
+        height.value.startsWith("-")
+      ) {
+        wResult.innerText = "";
+        result.innerText =
+          "please enter a value upper than zero or valid number";
+      } else{
+       wResult.innerText = "";
+       result.innerText = `${calculateFunc().toFixed(2)} %`;}
+     }
+
+function controlFuncFemaleForHeight(){
+  if (
+    waist.value == 0 ||
+    waist.value == "" ||
+    waist.value.startsWith("-") ||
+    height.value == 0 ||
+    height.value == "" ||
+    height.value.startsWith("-")
+  ) {
+    hResult.innerText = "";
+    result.innerText = "please enter a value upper than zero or valid number";
+  } else {
+    hResult.innerText = "";
+    result.innerText = `${(parseFloat(calculateFunc().toFixed(2)) + 12).toFixed(2)} %`;
+  }
+}
+
+function controlFuncFemaleForWaist(){
+  if (
+    waist.value == 0 ||
+    waist.value == "" ||
+    waist.value.startsWith("-") ||
+    height.value == 0 ||
+    height.value == "" ||
+    height.value.startsWith("-")
+  ) {
+    wResult.innerText = "";
+    result.innerText = "please enter a value upper than zero or valid number";
+  } else {
+    wResult.innerText = "";
+    result.innerText = `${(parseFloat(calculateFunc().toFixed(2)) + 12).toFixed(2)} %`;
+  }
+}
+
+function resultFunc(){
+  if (
+    result.innerText == "please enter a value upper than zero or valid number" || result.innerText == ""
+  ) {
+    table.classList = "hide";
+  }
+  if (
+    parseFloat(result.innerText) < 2
+  ) {
+    table.classList = "show";
+    table.children[2].classList.add("background");
+  }
+}
+
+
+
 waistSelect.onchange = function () {
   waistSelectFunc();
 };
-
 heightSelect.onchange = function () {
   heightSelectFunc();
+};
+sex.onchange = function () {
+  sexChange();
 };
 
 height.addEventListener("keyup", function () {
@@ -140,14 +222,70 @@ height.addEventListener("keyup", function () {
     height.value.startsWith("-")
   ) {
     result.innerText = "please enter a value upper than zero or valid number";
-  } else {
-    result.innerText = sexChange().toFixed(2);
   }
-});
-
-waist.onkeyup = function () {
-  if (
-    waist.value == 0 ||
+   if (heightSelect.value == "cm") {
+     if (parseFloat(height.value) < 81) {
+        result.innerText = "";
+        hResult.innerText = "Please, enter the correct hight.";
+     } else if (parseFloat(height.value) > 271) {
+       result.innerText = "";
+        hResult.innerText = "Are you sure about this height?";
+     } else if (sex.value == "male" && wResult.innerText == "" ) {
+        hResult.innerText = "";
+        controlFuncMaleForHeight();
+     } else if (sex.value == "female" && wResult.innerText == "") {
+        hResult.innerText = ""; 
+        controlFuncFemaleForHeight();
+     }
+   } else if (heightSelect.value == "m") {
+     if (parseFloat(height.value) < 0.81) {
+        result.innerText = "";
+        hResult.innerText = "Please, enter the correct hight.";
+     } else if (parseFloat(height.value) > 2.71) {
+       result.innerText = "";
+       hResult.innerText = "Are you sure about this height?";
+      } else if (sex.value == "male" && wResult.innerText == "") {
+        hResult.innerText = "";
+        controlFuncMaleForHeight();
+      } else if (sex.value == "female" && wResult.innerText == "") {
+        hResult.innerText = "";
+        controlFuncFemaleForHeight();
+      }
+    } else if (heightSelect.value == "in") {
+      if (parseFloat(height.value) < 31.497) {
+        result.innerText = "";
+        hResult.innerText = "Please, enter the correct hight.";
+      } else if (parseFloat(height.value) > 107.086) {
+        result.innerText = "";
+        hResult.innerText = "Are you sure about this height?";
+      } else if ((sex.value == "male") && (wResult.innerText == "")) {
+        hResult.innerText = "";
+        controlFuncMaleForHeight();
+      } else if (sex.value == "female" && (wResult.innerText == "")) {
+        hResult.innerText = "";
+        controlFuncFemaleForHeight();
+      }
+    } else if (heightSelect.value == "ft") {
+      if (parseFloat(height.value) < 2.6248) {
+        result.innerText = "";
+        hResult.innerText = "Please, enter the correct hight.";
+      } else if (parseFloat(height.value) > 8.924) {
+        result.innerText = "";
+        hResult.innerText = "Are you sure about this height?";
+      } else if (sex.value == "male" && wResult.innerText == "") {
+        hResult.innerText = "";
+        controlFuncMaleForHeight();
+      } else if (sex.value == "female" && wResult.innerText == "") {
+        hResult.innerText = "";
+        controlFuncFemaleForHeight();
+      }
+    } 
+    resultFunc();
+  });
+  
+  waist.onkeyup = function () {
+    if (
+      waist.value == 0 ||
     waist.value == "" ||
     waist.value.startsWith("-") ||
     height.value == 0 ||
@@ -155,7 +293,29 @@ waist.onkeyup = function () {
     height.value.startsWith("-")
   ) {
     result.innerText = "please enter a value upper than zero or valid number";
-  } else {
-    result.innerText = sexChange().toFixed(2);
-  }
-};
+  }   if (waistSelect.value == "cm") {
+        if (parseFloat(waist.value) < 41) {
+          result.innerText = "";
+          wResult.innerText = "Please, enter the correct waist measurement.";
+        } else if (sex.value == "male" && hResult.innerText == "") {
+          wResult.innerText = "";
+          controlFuncMaleForWaist();
+        } else if (sex.value == "female" && hResult.innerText == "") {
+          wResult.innerText = "";
+          controlFuncFemaleForWaist();
+        }
+      } else if (waistSelect.value == "in") {
+        if (parseFloat(waist.value) < 15.76) {
+          result.innerText = "";
+          wResult.innerText = "Please, enter the correct waist measurement.";
+      } else if (sex.value == "male" && hResult.innerText == "") {
+        wResult.innerText = "";
+        controlFuncMaleForWaist();
+      } else if (sex.value == "female" && hResult.innerText == "") {
+        wResult.innerText = "";
+        controlFuncFemaleForWaist();
+      }  
+    }
+    resultFunc();
+  };
+    
